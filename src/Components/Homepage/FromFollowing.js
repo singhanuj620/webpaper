@@ -18,7 +18,7 @@ const FromFollowing = () => {
     getPerson();
     let face =
       person.length === 0
-        ? "https://via.placeholder.com/150"
+        ? "https://via.placeholder.com/150/"
         : person[0].picture.large;
     let name =
       person.length === 0
