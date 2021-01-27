@@ -1,0 +1,7 @@
+.FromFollowing {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  border: 1px solid blue;
+  width: 100%;
+}
