@@ -1,40 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "../../Css/Homepage/FromFollowing.css";
 
 const FromFollowing = () => {
-  const [person, setPerson] = useState([]);
+  const [changePerson, setChangePerson] = useState(false);
+  const [personData, setPersonData] = useState([]);
 
-  const getPerson = () => {
+  useEffect(() => {
     var conn = "https://randomuser.me/api/";
-    axios.get(conn).then((data) => {
-      setPerson(data.data.results);
-      console.log(data);
-    });
-  };
+    axios
+      .get(conn, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          "Access-Control-Allow-Headers":
+            "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+        },
+        responseType: "json",
+      })
+      .then((data) => {
+        var face = data.data.results[0].picture.large;
+        var name =
+          data.data.results[0].name.first +
+          " " +
+          data.data.results[0].name.last;
+        setPersonData([face, name]);
+      });
+  }, [changePerson]);
 
   const getPersonData = () => {
-    getPerson();
-    let face =
-      person.length === 0
-        ? "https://via.placeholder.com/150/"
-        : person[0].picture.large;
-    let name =
-      person.length === 0
-        ? "John Doe"
-        : person[0].name.first + " " + person[0].name.last;
-    return [face, name];
+    var tempPerson = [...personData];
+    console.log(tempPerson);
+    setChangePerson(!changePerson);
+    return tempPerson;
   };
-
-  const getData = () => getPersonData();
 
   return (
     <div className="FromFollowing">
       <div className="latestFollowing">
         <div className="latest_title">LATEST FROM FOLLOWING</div>
         <div className="following_peoples">
-          <div className="people_face">{getData()[1]}</div>
+          <div className="people_face">{getPersonData[1]}</div>
+          <img src={getPersonData[0]} alt="A" />
         </div>
       </div>
     </div>
