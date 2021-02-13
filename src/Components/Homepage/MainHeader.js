@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import ConfigData from "../../Config";
 import axios from "axios";
+import faker from "faker";
 
 import "../../Css/Homepage/MainHeader.css";
 
@@ -78,15 +79,17 @@ const MainHeader = () => {
                 <AccountCircleOutlinedIcon />
               </div>
               <div className="mainHeader_author">
-                Shakti Shetty in Shaktian Space
+                {faker.name.findName()} in {faker.random.word()} Space
               </div>
             </div>
-            <div className="mainHeader_title">
-              Counting days, sleepless nights
-            </div>
+            <div className="mainHeader_title">{faker.random.words()}</div>
             <div className="mainHeader_datetime">
-              <div className="mainHeader_date">Dec 14, 2020</div>
-              <div className="mainHeader_time">5 min read</div>
+              <div className="mainHeader_date">
+                {faker.date.past().toDateString().split(" ").slice(1).join(" ")}
+              </div>
+              <div className="mainHeader_time">
+                {faker.random.number().toString().slice(0, 2)} min read
+              </div>
             </div>
           </div>
           {/* bigPost_info */}
@@ -103,16 +106,23 @@ const MainHeader = () => {
                   <AccountCircleOutlinedIcon />
                 </div>
                 <div className="mainHeader_sm_author">
-                  Shakti Shetty in Shaktian Space
+                  {faker.name.findName()} in {faker.random.word()} Space
                 </div>
               </div>
               {/* smallPost_info */}
-              <div className="mainHeader_sm_title">
-                Counting days, sleepless nights
-              </div>
+              <div className="mainHeader_sm_title">{faker.random.words()}</div>
               <div className="mainHeader_sm_datetime">
-                <div className="mainHeader_date">Dec 14, 2020</div>
-                <div className="mainHeader_time">5 min read</div>
+                <div className="mainHeader_date">
+                  {faker.date
+                    .past()
+                    .toDateString()
+                    .split(" ")
+                    .slice(1)
+                    .join(" ")}
+                </div>
+                <div className="mainHeader_time">
+                  {faker.random.number().toString().slice(0, 2)} min read
+                </div>
               </div>
               {/* smallPost_datetime */}
             </div>
@@ -152,16 +162,23 @@ const MainHeader = () => {
                   <AccountCircleOutlinedIcon />
                 </div>
                 <div className="mainHeader_sm_author">
-                  Shakti Shetty in Shaktian Space
+                  {faker.name.findName()} in {faker.random.word()} Space
                 </div>
               </div>
               {/* smallPost_info */}
-              <div className="mainHeader_sm_title">
-                Counting days, sleepless nights
-              </div>
+              <div className="mainHeader_sm_title">{faker.random.words()}</div>
               <div className="mainHeader_sm_datetime">
-                <div className="mainHeader_date">Dec 14, 2020</div>
-                <div className="mainHeader_sm_time">5 min read</div>
+                <div className="mainHeader_date">
+                  {faker.date
+                    .past()
+                    .toDateString()
+                    .split(" ")
+                    .slice(1)
+                    .join(" ")}
+                </div>
+                <div className="mainHeader_sm_time">
+                  {faker.random.number().toString().slice(0, 2)} min read
+                </div>
               </div>
               {/* smallPost_datetime */}
             </div>
@@ -200,16 +217,23 @@ const MainHeader = () => {
                   <AccountCircleOutlinedIcon />
                 </div>
                 <div className="mainHeader_sm_author">
-                  Shakti Shetty in Shaktian Space
+                  {faker.name.findName()} in {faker.random.word()} Space
                 </div>
               </div>
               {/* smallPost_info */}
-              <div className="mainHeader_sm_title">
-                Counting days, sleepless nights
-              </div>
+              <div className="mainHeader_sm_title">{faker.random.words()}</div>
               <div className="mainHeader_sm_datetime">
-                <div className="mainHeader_date">Dec 14, 2020</div>
-                <div className="mainHeader_time">5 min read</div>
+                <div className="mainHeader_date">
+                  {faker.date
+                    .past()
+                    .toDateString()
+                    .split(" ")
+                    .slice(1)
+                    .join(" ")}
+                </div>
+                <div className="mainHeader_time">
+                  {faker.random.number().toString().slice(0, 2)} min read
+                </div>
               </div>
               {/* smallPost_datetime */}
             </div>
