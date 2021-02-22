@@ -5,13 +5,17 @@
   width: 99%;
 }
 
+.latestFollowing {
+  height: 42%;
+}
+
 .peoples {
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
   overflow-y: hidden;
   width: 85%;
-  height: 35%;
+  height: 70%;
 }
 
 .peoples::-webkit-scrollbar-track {
@@ -33,7 +37,9 @@
 }
 
 .latest_title {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
   font-size: 1.8rem;
   width: auto;
 }
@@ -60,8 +66,69 @@
 }
 
 .person_name {
-  height: 20%;
+  height: 40%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.following_hashtags {
+  height: 55%;
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hashtag_title {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 1.8rem;
+  width: auto;
+}
+
+.hashtag_list_group {
+  overflow-y: scroll;
+  height: 55%;
+}
+
+.hashtag_list_group::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.hashtag_list_group::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+.hashtag_list_group::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
+li {
+  list-style: none;
+}
+
+.hashtag_title > hr {
+  width: 86.7%;
+  float: left;
+}
+
+.following_hashtag_group {
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 2%;
+}
+
+.following_hashtag_name {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
   display: flex;
   justify-content: center;
   align-items: center;

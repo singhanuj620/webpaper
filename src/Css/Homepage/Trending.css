@@ -1,0 +1,89 @@
+.trending_container {
+  margin: 0% 2%;
+}
+
+.trending_headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1%;
+}
+
+.trending_headline_text {
+  margin-left: 1%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+.trending_list {
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+  margin-top: 2%;
+}
+
+.trending_post {
+  display: flex;
+  width: 33%;
+  min-width: 33%;
+  min-height: 28vh;
+}
+
+.trending_post_index {
+  font-family: "Roboto", sans-serif;
+  font-size: 4rem;
+  color: gray;
+  opacity: 0.4;
+}
+
+.trending_post_info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 3%;
+}
+
+.trending_post_metadata {
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  align-items: center;
+  margin-top: 3%;
+}
+
+.trending_post_author {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  margin-left: 2%;
+  width: 100%;
+}
+
+.trending_post_title {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2rem;
+  margin-top: 1%;
+  word-wrap: break-word;
+}
+
+.trending_post_duration {
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  margin-top: 3%;
+}
+
+.trending_post_date {
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.trending_post_time {
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+  margin-left: 5%;
+}

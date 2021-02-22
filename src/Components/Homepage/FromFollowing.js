@@ -1,6 +1,7 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 import faker from "faker";
+import { Button } from "reactstrap";
 
 import "../../Css/Homepage/FromFollowing.css";
 
@@ -73,6 +74,89 @@ const FromFollowing = () => {
             </div>
             <div className="person_name">{getPersonData()[1]}</div>
           </div>
+        </div>
+      </div>
+
+      <div className="following_hashtags">
+        <div className="hashtag_title">
+          UPDATES FROM #TOPICS <hr></hr>
+        </div>
+        <div className="hashtag_list_group">
+          <li>
+            <div className="following_hashtag_group">
+              <div className="following_hashtag_name">
+                # {faker.random.word()}
+              </div>
+              <div following_hashtag_button>
+                <Button outline color="info">
+                  OPEN
+                </Button>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div className="following_hashtag_group">
+              <div className="following_hashtag_name">
+                # {faker.random.word()}
+              </div>
+              <div following_hashtag_button>
+                <Button outline color="info">
+                  OPEN
+                </Button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="following_hashtag_group">
+              <div className="following_hashtag_name">
+                # {faker.random.word()}
+              </div>
+              <div following_hashtag_button>
+                <Button outline color="info">
+                  OPEN
+                </Button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="following_hashtag_group">
+              <div className="following_hashtag_name">
+                # {faker.random.word()}
+              </div>
+              <div following_hashtag_button>
+                <Button outline color="info">
+                  OPEN
+                </Button>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div className="following_hashtag_group">
+              <div className="following_hashtag_name">
+                # {faker.random.word()}
+              </div>
+              <div following_hashtag_button>
+                <Button outline color="info">
+                  OPEN
+                </Button>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div className="following_hashtag_group">
+              <div className="following_hashtag_name">
+                # {faker.random.word()}
+              </div>
+              <div following_hashtag_button>
+                <Button outline color="info">
+                  OPEN
+                </Button>
+              </div>
+            </div>
+          </li>
         </div>
       </div>
     </div>
