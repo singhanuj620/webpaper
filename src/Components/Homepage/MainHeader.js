@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import { v4 as uuid } from "uuid";
+import { Link } from "react-router-dom";
 import ConfigData from "../../Config";
 import axios from "axios";
 import faker from "faker";
@@ -82,7 +83,11 @@ const MainHeader = () => {
                 {faker.name.findName()} in {faker.random.word()} Space
               </div>
             </div>
-            <div className="mainHeader_title">{faker.random.words()}</div>
+            <div className="mainHeader_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="mainHeader_datetime">
               <div className="mainHeader_date">
                 {faker.date.past().toDateString().split(" ").slice(1).join(" ")}

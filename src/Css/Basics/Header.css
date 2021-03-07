@@ -1,0 +1,17 @@
+.navbar_container {
+  background-color: #ffc017;
+  position: sticky;
+  width: 98%;
+  top: 0;
+  margin-left: 1%;
+  z-index: 100;
+}
+
+.navbar-text,
+.nav-link {
+  color: black !important;
+}
+
+.nav-link:hover {
+  border-bottom: 1px solid black;
+}
