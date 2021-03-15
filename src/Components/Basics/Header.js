@@ -21,7 +21,11 @@ const NavbarSection = (props) => {
   return (
     <div className="navbar_container">
       <Navbar color="#ffc017" light expand="md">
-        <NavbarBrand href="/">WebPaper</NavbarBrand>
+        <NavbarBrand href="/">
+          <Link to={`/`} className="link">
+            WebPaper
+          </Link>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>

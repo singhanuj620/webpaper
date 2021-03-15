@@ -2,6 +2,7 @@ import React from "react";
 import NavbarSection from "../Basics/Header";
 import "../../Css/LogInSignUp/SignUp.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import signup_photo from "../../Assests/Images/LogInSignUp/signup.svg";
 const SignUp = () => {
   return (
     <div>
@@ -9,7 +10,7 @@ const SignUp = () => {
       <div className="signup_container">
         <div className="signup_svg_container">
           <img
-            src="Assets/Images/LogInSignUp/signup.svg"
+            src={signup_photo}
             alt="Web Paper | signup"
             className="signup_svg"
           />

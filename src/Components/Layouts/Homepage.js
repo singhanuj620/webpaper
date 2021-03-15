@@ -5,6 +5,7 @@ import Trending from "../Homepage/Trending";
 import NavbarSection from "../Basics/Header";
 import AllPost from "../Homepage/AllPost";
 import "../../Css/Layout/Homepage.css";
+import main_header_side_poster from "../../Assests/Images/Homepage/main_header_side_poster.svg";
 
 const Homepage = () => {
   return (
@@ -19,7 +20,7 @@ const Homepage = () => {
             </div>
           </div>
           <img
-            src="Assets/Images/Homepage/main_header_side_poster.svg"
+            src={main_header_side_poster}
             alt="Web Paper"
             className="poster_svg"
           />
