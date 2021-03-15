@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/webpaper/static/css/main.8de2f2c6.chunk.css",
+    "main.js": "/webpaper/static/js/main.93203541.chunk.js",
+    "main.js.map": "/webpaper/static/js/main.93203541.chunk.js.map",
+    "runtime-main.js": "/webpaper/static/js/runtime-main.60387bcc.js",
+    "runtime-main.js.map": "/webpaper/static/js/runtime-main.60387bcc.js.map",
+    "static/css/2.150d169a.chunk.css": "/webpaper/static/css/2.150d169a.chunk.css",
+    "static/js/2.67358dbb.chunk.js": "/webpaper/static/js/2.67358dbb.chunk.js",
+    "static/js/2.67358dbb.chunk.js.map": "/webpaper/static/js/2.67358dbb.chunk.js.map",
+    "index.html": "/webpaper/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/webpaper/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.8de2f2c6.chunk.css.map": "/webpaper/static/css/main.8de2f2c6.chunk.css.map",
+    "static/js/2.67358dbb.chunk.js.LICENSE.txt": "/webpaper/static/js/2.67358dbb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.60387bcc.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.67358dbb.chunk.js",
+    "static/css/main.8de2f2c6.chunk.css",
+    "static/js/main.93203541.chunk.js"
+  ]
+}
