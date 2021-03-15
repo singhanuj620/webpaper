@@ -13,7 +13,7 @@ import TurnedInIcon from "@material-ui/icons/TurnedIn";
 
 const Article = () => {
   let { articleId } = useParams();
-  const [linkCopied, setLinkCopied] = useState("Or, Click to copy !!!");
+  const [linkCopied, setLinkCopied] = useState("Or, Click to copy URL !!!");
   return (
     <div>
       <NavbarSection />
@@ -38,10 +38,18 @@ const Article = () => {
               {faker.lorem.paragraphs()}
               {faker.lorem.paragraphs()}
             </p>
+            <img
+              src="https://images.unsplash.com/photo-1484627147104-f5197bcd6651?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+              alt="article content"
+            />
             <p>
               {faker.lorem.paragraphs()}
               {faker.lorem.paragraphs()}
             </p>
+            <img
+              src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
+              alt="article content"
+            />
             <p>
               {faker.lorem.paragraphs()}
               {faker.lorem.paragraphs()}

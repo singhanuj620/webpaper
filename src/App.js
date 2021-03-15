@@ -4,6 +4,7 @@ import "./App.css";
 
 import Homepage from "./Components/Layouts/Homepage";
 import Article from "./Components/Layouts/Article";
+import Profile from "./Components/Layouts/Profile";
 import ScrollToTop from "./Components/Basics/ScrollTop";
 
 var App = () => {
@@ -13,6 +14,9 @@ var App = () => {
       <Switch>
         <Route path="/article/:articleId">
           <Article />
+        </Route>
+        <Route path="/user/:userId">
+          <Profile />
         </Route>
         <Route path="/">
           <Homepage />

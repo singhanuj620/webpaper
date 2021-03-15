@@ -1,0 +1,120 @@
+.profile_container {
+  width: 98%;
+  margin: 1%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60vh;
+}
+
+.profile_metadata {
+  width: 30%;
+}
+
+.profile_photo_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile_img {
+  height: 50vh;
+  object-fit: contain;
+  padding: 2%;
+  border: 3px solid #ffc017;
+  border-radius: 50%;
+}
+
+.profile_info {
+  width: 60%;
+  height: 100%;
+}
+
+.profile_username_metadata {
+  margin-top: 1%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 95%;
+}
+
+.profile_username {
+  font-family: "Raleway", sans-serif;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin-bottom: 1%;
+}
+
+.profile_tag,
+.profile_donate {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 200;
+  background-color: #ffc017;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 1%;
+}
+
+.profile_donate {
+  background-color: #1976d2;
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile_stats {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  word-wrap: break-word;
+  width: 100%;
+  height: 3rem;
+}
+
+.profile_followers,
+.profile_stars,
+.profile_email,
+.profile_location {
+  font-family: "Ubuntu", sans-serif;
+  display: flex;
+  margin-right: 3%;
+  align-items: center;
+}
+
+.profile_highlight {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  font-family: "Ubuntu", sans-serif;
+  letter-spacing: 1px;
+}
+
+.profile_toppick {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.bestpick_text {
+  font-size: 1.5rem;
+  margin-left: 2%;
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+}
+
+.profile_picktable {
+  width: 100%;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 200;
+}
+
+/* font-family: 'Roboto', sans-serif; Sub Heading
+          font-family: 'Ubuntu', sans-serif; Normal Text
+        font-family: 'Raleway', sans-serif; Main-Heading */

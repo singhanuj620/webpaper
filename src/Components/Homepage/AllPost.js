@@ -416,7 +416,6 @@ const AllPost = () => {
         </div>
         {/* Small Post ENDS */}
       </div>
-      <div className="toFollow">Abhinav Singh</div>
     </div>
   );
 };

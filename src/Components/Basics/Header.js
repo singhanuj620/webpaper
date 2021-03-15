@@ -9,6 +9,8 @@ import {
   NavLink,
   Button,
 } from "reactstrap";
+import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 import "../../Css/Basics/Header.css";
 
 const NavbarSection = (props) => {
@@ -24,7 +26,11 @@ const NavbarSection = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/">Trending</NavLink>
+              <NavLink href="/">
+                <Link to={`/user/${uuid()}`} className="link">
+                  Profile
+                </Link>
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
@@ -32,6 +38,13 @@ const NavbarSection = (props) => {
                 target="_blank"
               >
                 GitHub
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/">
+                <Link to={`/article/${uuid()}`} className="link">
+                  Random Blog
+                </Link>
               </NavLink>
             </NavItem>
           </Nav>
