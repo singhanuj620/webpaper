@@ -53,7 +53,7 @@ const NavbarSection = (props) => {
               <NavLink>
                 <Link to={`/login`}>
                   <Button color="success" size="sm" id="navbar_auth_buttons">
-                    Sign In
+                    Log In
                   </Button>
                 </Link>
               </NavLink>
