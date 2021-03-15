@@ -2,6 +2,8 @@ import React from "react";
 import "../../Css/Homepage/Trending.css";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
+import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
 import faker from "faker";
 
@@ -23,7 +25,11 @@ const Trending = () => {
                 {faker.name.findName()}
               </div>
             </div>
-            <div className="trending_post_title">{faker.random.words()}</div>
+            <div className="trending_post_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="trending_post_duration">
               <div className="trending_post_date">
                 {faker.date.past().toDateString().split(" ").slice(1).join(" ")}
@@ -46,7 +52,11 @@ const Trending = () => {
                 {faker.name.findName()}
               </div>
             </div>
-            <div className="trending_post_title">{faker.random.words()}</div>
+            <div className="trending_post_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="trending_post_duration">
               <div className="trending_post_date">
                 {faker.date.past().toDateString().split(" ").slice(1).join(" ")}
@@ -69,7 +79,11 @@ const Trending = () => {
                 {faker.name.findName()}
               </div>
             </div>
-            <div className="trending_post_title">{faker.random.words()}</div>
+            <div className="trending_post_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="trending_post_duration">
               <div className="trending_post_date">
                 {faker.date.past().toDateString().split(" ").slice(1).join(" ")}
@@ -92,7 +106,11 @@ const Trending = () => {
                 {faker.name.findName()}
               </div>
             </div>
-            <div className="trending_post_title">{faker.random.words()}</div>
+            <div className="trending_post_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="trending_post_duration">
               <div className="trending_post_date">
                 {faker.date.past().toDateString().split(" ").slice(1).join(" ")}
@@ -115,7 +133,11 @@ const Trending = () => {
                 {faker.name.findName()}
               </div>
             </div>
-            <div className="trending_post_title">{faker.random.words()}</div>
+            <div className="trending_post_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="trending_post_duration">
               <div className="trending_post_date">
                 {faker.date.past().toDateString().split(" ").slice(1).join(" ")}
@@ -138,7 +160,11 @@ const Trending = () => {
                 {faker.name.findName()}
               </div>
             </div>
-            <div className="trending_post_title">{faker.random.words()}</div>
+            <div className="trending_post_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="trending_post_duration">
               <div className="trending_post_date">
                 {faker.date.past().toDateString().split(" ").slice(1).join(" ")}

@@ -115,7 +115,11 @@ const MainHeader = () => {
                 </div>
               </div>
               {/* smallPost_info */}
-              <div className="mainHeader_sm_title">{faker.random.words()}</div>
+              <div className="mainHeader_sm_title">
+                <Link to={`/article/${uuid()}`} className="link">
+                  {faker.random.words()}
+                </Link>
+              </div>
               <div className="mainHeader_sm_datetime">
                 <div className="mainHeader_date">
                   {faker.date
@@ -171,7 +175,11 @@ const MainHeader = () => {
                 </div>
               </div>
               {/* smallPost_info */}
-              <div className="mainHeader_sm_title">{faker.random.words()}</div>
+              <div className="mainHeader_sm_title">
+                <Link to={`/article/${uuid()}`} className="link">
+                  {faker.random.words()}
+                </Link>
+              </div>
               <div className="mainHeader_sm_datetime">
                 <div className="mainHeader_date">
                   {faker.date
@@ -226,7 +234,11 @@ const MainHeader = () => {
                 </div>
               </div>
               {/* smallPost_info */}
-              <div className="mainHeader_sm_title">{faker.random.words()}</div>
+              <div className="mainHeader_sm_title">
+                <Link to={`/article/${uuid()}`} className="link">
+                  {faker.random.words()}
+                </Link>
+              </div>
               <div className="mainHeader_sm_datetime">
                 <div className="mainHeader_date">
                   {faker.date

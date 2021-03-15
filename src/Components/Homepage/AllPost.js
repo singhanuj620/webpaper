@@ -6,6 +6,8 @@ import faker from "faker";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import TurnedInIcon from "@material-ui/icons/TurnedIn";
+import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 const AllPost = () => {
   const [stockImage, setStockImage] = useState([]);
 
@@ -68,7 +70,11 @@ const AllPost = () => {
               </div>
             </div>
             {/* allPost_info */}
-            <div className="allPost_sm_title">{faker.random.words()}</div>
+            <div className="allPost_sm_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="allPost_sm_description">
               {post_description(faker.lorem.paragraph())}
             </div>
@@ -128,7 +134,11 @@ const AllPost = () => {
               </div>
             </div>
             {/* allPost_info */}
-            <div className="allPost_sm_title">{faker.random.words()}</div>
+            <div className="allPost_sm_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="allPost_sm_description">
               {post_description(faker.lorem.paragraph())}
             </div>
@@ -188,7 +198,11 @@ const AllPost = () => {
               </div>
             </div>
             {/* allPost_info */}
-            <div className="allPost_sm_title">{faker.random.words()}</div>
+            <div className="allPost_sm_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="allPost_sm_description">
               {post_description(faker.lorem.paragraph())}
             </div>
@@ -248,7 +262,11 @@ const AllPost = () => {
               </div>
             </div>
             {/* allPost_info */}
-            <div className="allPost_sm_title">{faker.random.words()}</div>
+            <div className="allPost_sm_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="allPost_sm_description">
               {post_description(faker.lorem.paragraph())}
             </div>
@@ -308,7 +326,11 @@ const AllPost = () => {
               </div>
             </div>
             {/* allPost_info */}
-            <div className="allPost_sm_title">{faker.random.words()}</div>
+            <div className="allPost_sm_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="allPost_sm_description">
               {post_description(faker.lorem.paragraph())}
             </div>
@@ -367,7 +389,11 @@ const AllPost = () => {
               </div>
             </div>
             {/* allPost_info */}
-            <div className="allPost_sm_title">{faker.random.words()}</div>
+            <div className="allPost_sm_title">
+              <Link to={`/article/${uuid()}`} className="link">
+                {faker.random.words()}
+              </Link>
+            </div>
             <div className="allPost_sm_description">
               {post_description(faker.lorem.paragraph())}
             </div>
