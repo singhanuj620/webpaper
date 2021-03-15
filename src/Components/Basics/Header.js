@@ -26,7 +26,7 @@ const NavbarSection = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/">
+              <NavLink>
                 <Link to={`/user/${uuid()}`} className="link">
                   Profile
                 </Link>
@@ -41,7 +41,7 @@ const NavbarSection = (props) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">
+              <NavLink>
                 <Link to={`/article/${uuid()}`} className="link">
                   Random Blog
                 </Link>
@@ -50,22 +50,26 @@ const NavbarSection = (props) => {
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/">
-                <Button color="success" size="sm" id="navbar_auth_buttons">
-                  Sign In
-                </Button>
+              <NavLink>
+                <Link to={`/login`}>
+                  <Button color="success" size="sm" id="navbar_auth_buttons">
+                    Sign In
+                  </Button>
+                </Link>
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">
-                <Button
-                  outline
-                  color="primary"
-                  size="sm"
-                  id="navbar_auth_buttons"
-                >
-                  Register
-                </Button>
+              <NavLink>
+                <Link to={`/signup`}>
+                  <Button
+                    outline
+                    color="primary"
+                    size="sm"
+                    id="navbar_auth_buttons"
+                  >
+                    Register
+                  </Button>
+                </Link>
               </NavLink>
             </NavItem>
           </Nav>
