@@ -1,0 +1,39 @@
+.create_container{
+    width:98%;
+    margin-left: 1%;
+    margin-top: 3%;
+}
+
+.create_note{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.create_lable{
+    font-family: 'Roboto',
+    sans-serif;
+    font-size:1.3rem;
+    letter-spacing:3px;
+}
+
+.create_markdown_box{
+    width:98%;
+    margin-left: 1%;
+    
+}
+
+.create_formgroup{
+    width:96%;
+    margin-left: 2%;
+}
+
+.create_post_btn{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 2%;
+    margin-top: 3%;
+    width: 96%;
+    margin-bottom: 10%;
+}

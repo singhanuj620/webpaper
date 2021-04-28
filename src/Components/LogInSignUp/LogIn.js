@@ -1,12 +1,10 @@
 import React from "react";
-import NavbarSection from "../Basics/Header";
 import "../../Css/LogInSignUp/LogIn.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import login_photo from "../../Assests/Images/LogInSignUp/login.svg";
 const LogIn = () => {
   return (
     <div>
-      <NavbarSection />
       <div className="login_container">
         <div className="login_svg_container">
           <img

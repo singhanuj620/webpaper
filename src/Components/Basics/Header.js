@@ -51,6 +51,13 @@ const NavbarSection = (props) => {
                 </Link>
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink>
+                <Link to={`/create`} className="link">
+                  New blog
+                </Link>
+              </NavLink>
+            </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import "../../Css/Layout/Article.css";
-import NavbarSection from "../Basics/Header";
 import faker from "faker";
 import { v4 as uuid } from "uuid";
 import QRCode from "qrcode.react";
@@ -16,7 +15,6 @@ const Article = () => {
   const [linkCopied, setLinkCopied] = useState("Or, Click to copy URL !!!");
   return (
     <div>
-      <NavbarSection />
       <div className="article_container">
         <div className="article_poster_container">
           <img

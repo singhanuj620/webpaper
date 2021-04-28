@@ -87,7 +87,7 @@ const FromFollowing = () => {
               <div className="following_hashtag_name">
                 # {faker.random.word()}
               </div>
-              <div following_hashtag_button>
+              <div className="following_hashtag_button">
                 <Button outline color="info">
                   OPEN
                 </Button>

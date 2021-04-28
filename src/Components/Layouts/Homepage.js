@@ -2,7 +2,6 @@ import React from "react";
 import BookIcon from "@material-ui/icons/Book";
 import MainHeader from "../Homepage/MainHeader";
 import Trending from "../Homepage/Trending";
-import NavbarSection from "../Basics/Header";
 import AllPost from "../Homepage/AllPost";
 import "../../Css/Layout/Homepage.css";
 import main_header_side_poster from "../../Assests/Images/Homepage/main_header_side_poster.svg";
@@ -10,7 +9,6 @@ import main_header_side_poster from "../../Assests/Images/Homepage/main_header_s
 const Homepage = () => {
   return (
     <div>
-      <NavbarSection />
       <div className="Homepage">
         <div className="poster_div">
           <div className="poster_metadata">

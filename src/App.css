@@ -5,6 +5,7 @@ body {
 
 .link {
   color: inherit;
+  cursor: pointer;
 }
 
 .link:hover {

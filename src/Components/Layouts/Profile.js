@@ -1,6 +1,5 @@
 import React from "react";
 import AllPost from "../Homepage/AllPost";
-import NavbarSection from "../Basics/Header";
 import "../../Css/Layout/Profile.css";
 import faker from "faker";
 import { Table } from "reactstrap";
@@ -14,7 +13,6 @@ import LocalActivityIcon from "@material-ui/icons/LocalActivity";
 const Profile = () => {
   return (
     <div>
-      <NavbarSection />
       <div className="profile_container">
         <div className="profile_metadata">
           <div className="profile_photo_container">
