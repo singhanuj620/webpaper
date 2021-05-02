@@ -100,7 +100,7 @@ const FromFollowing = () => {
               <div className="following_hashtag_name">
                 # {faker.random.word()}
               </div>
-              <div following_hashtag_button>
+              <div className="following_hashtag_button">
                 <Button outline color="info">
                   OPEN
                 </Button>
@@ -112,7 +112,7 @@ const FromFollowing = () => {
               <div className="following_hashtag_name">
                 # {faker.random.word()}
               </div>
-              <div following_hashtag_button>
+              <div className="following_hashtag_button">
                 <Button outline color="info">
                   OPEN
                 </Button>
@@ -124,20 +124,7 @@ const FromFollowing = () => {
               <div className="following_hashtag_name">
                 # {faker.random.word()}
               </div>
-              <div following_hashtag_button>
-                <Button outline color="info">
-                  OPEN
-                </Button>
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <div className="following_hashtag_group">
-              <div className="following_hashtag_name">
-                # {faker.random.word()}
-              </div>
-              <div following_hashtag_button>
+              <div className="following_hashtag_button">
                 <Button outline color="info">
                   OPEN
                 </Button>
@@ -150,7 +137,20 @@ const FromFollowing = () => {
               <div className="following_hashtag_name">
                 # {faker.random.word()}
               </div>
-              <div following_hashtag_button>
+              <div className="following_hashtag_button">
+                <Button outline color="info">
+                  OPEN
+                </Button>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div className="following_hashtag_group">
+              <div className="following_hashtag_name">
+                # {faker.random.word()}
+              </div>
+              <div className="following_hashtag_button">
                 <Button outline color="info">
                   OPEN
                 </Button>

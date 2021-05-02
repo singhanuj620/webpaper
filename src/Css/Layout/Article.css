@@ -12,8 +12,10 @@
   align-items: flex-start;
   font-family: "Raleway", sans-serif;
   font-weight: 600;
-  font-size: 2.7rem;
+  font-size: 2.5rem;
   word-wrap: break-word;
+  background-color: #CAD5E2;
+  padding: 1%;
 }
 
 .article_poster_container {
@@ -39,6 +41,9 @@
   text-align: justify;
   width: 78%;
   font-size: 1.3rem;
+  border: 3px solid #CAD5E2;
+  padding: 1.5%;
+  min-height: 82vh;
 }
 
 .article_content > img {

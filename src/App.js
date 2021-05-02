@@ -16,7 +16,7 @@ var App = () => {
       <ScrollToTop />
       <NavbarSection />
       <Switch>
-        <Route path="/article/:articleId">
+        <Route path="/article/:blogId">
           <Article />
         </Route>
         <Route path="/user/:userId">

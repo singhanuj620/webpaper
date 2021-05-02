@@ -46,7 +46,7 @@ const NavbarSection = (props) => {
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link to={`/article/${uuid()}`} className="link">
+                <Link to={`/article/60894fbeb7007e56a8c5b918`} className="link">
                   Random Blog
                 </Link>
               </NavLink>
