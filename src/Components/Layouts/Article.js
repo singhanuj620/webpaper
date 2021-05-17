@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../../Css/Layout/Article.css";
+import SpinnerLoad from '../Basics/SpinnerLoad'
 import faker from "faker";
 import { v4 as uuid } from "uuid";
 import QRCode from "qrcode.react";
@@ -16,28 +17,49 @@ const Article = () => {
   let { blogId } = useParams();
   const [linkCopied, setLinkCopied] = useState("Or, Click to copy URL !!!");
   const [blogData, setBlogData] = useState({});
+  const [posterLoaded, setPosterLoaded] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const [posterSrc, setPosterSrc] = useState("");
+  const [connUrl, setConnUrl] = useState(`http://${process.env.REACT_APP_ROUTE}/api/article/${blogId}`);
+
+  const fetchData = async () => {
+    const { data } = await axios.get(connUrl);
+    setBlogData(data.result);
+    setDataLoaded(true);
+  }
 
   useEffect(() => {
-    const conn_url = `http://${process.env.REACT_APP_ROUTE}/api/article/${blogId}`;
-    axios
-      .get(conn_url)
-      .then((response) => {
-        setBlogData(response.data.result);
-      })
-      .catch((error) => {
-        console.log("ERROR");
-      });
-  }, [blogId]);
+    async function fetch() {
+      await fetchData();
+      arrayBufferToBase64();
+    }
+    fetch();
+  }, []);
+
+
+  const arrayBufferToBase64 = () => {
+    if (blogData.poster === undefined) {
+      return;
+    }
+    const buffer = blogData.poster.data.data;
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => binary += String.fromCharCode(b));
+    var resultImg = window.btoa(binary);
+    setPosterSrc(resultImg);
+    setPosterLoaded(true);
+  };
 
   return (
-    <div>
+    <div>{dataLoaded ?
       <div className="article_container">
         <div className="article_poster_container">
-          <img
+          {posterLoaded ? <img
             className="article_poster"
-            src="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+            src={`data:image/${blogData.poster.posterType};base64,${posterSrc}`}
             alt="article poster"
-          />
+          /> : <SpinnerLoad message={"Poster"} />
+          }
         </div>
         <br />
         <div className="article_title">{blogData.title}</div>
@@ -94,8 +116,8 @@ const Article = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div> : <SpinnerLoad />
+    }</div>
   );
 };
 

@@ -12,19 +12,27 @@ const NewArticle = () => {
   const [content, setContent] = useState("It's a **markdown editor** !!");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
+  const [poster, setPoster] = useState(null);
+  const [posterType, setPosterType] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [redirectPath, setRedirectPath] = useState("/");
 
   const submitData = async (e) => {
     e.preventDefault();
-    const result = await axios.post(
-      "http://localhost:8000/api/article/create",
-      {
-        title: title,
-        author: author,
-        content: content,
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('author', author);
+    formData.append('content', content);
+    formData.append('poster', poster);
+    formData.append('posterType', posterType)
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
       }
-    );
+    };
+
+    const result = await axios.post("http://localhost:8000/api/article/create", formData, config)
+
     toast.success("🦄 Blog Posted", {
       position: "top-right",
       autoClose: 5000,
@@ -69,6 +77,24 @@ const NewArticle = () => {
             }}
           />
         </FormGroup>
+        <FormGroup className="create_formgroup">
+          <Label for="poster" className="create_lable">
+            Poster Image
+          </Label>
+          <Input
+            required
+            type="file"
+            name="poster"
+            id="poster"
+            accept="image/*"
+            placeholder="Select an image for poster"
+            onChange={(e) => {
+              setPosterType(e.target.files[0].type.split("/")[1]);
+              setPoster(e.target.files[0]);
+            }}
+          />
+        </FormGroup>
+
         <FormGroup className="create_formgroup">
           <Label for="author" className="create_lable">
             Author
