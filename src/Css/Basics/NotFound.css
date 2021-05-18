@@ -1,0 +1,29 @@
+.notfound_container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height:90vh;
+    font-family: 'Roboto',
+    sans-serif;
+}
+
+.notfound_svg{
+    object-fit: contain;
+    height:50vh;
+}
+
+.notfound_title{
+    letter-spacing:2px;
+    font-weight: 300;
+    font-size:3rem;
+}
+
+.notfound_buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50vw;
+    margin-bottom: 3%;
+    margin-top: 2%;
+}

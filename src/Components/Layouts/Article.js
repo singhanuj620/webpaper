@@ -6,6 +6,7 @@ import faker from "faker";
 import { v4 as uuid } from "uuid";
 import QRCode from "qrcode.react";
 import axios from "axios";
+import NotFound from '../Basics/NotFound'
 import MDEditor from "@uiw/react-md-editor";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -20,12 +21,16 @@ const Article = () => {
   const [posterLoaded, setPosterLoaded] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [posterSrc, setPosterSrc] = useState("");
+  const [ApiError, setApiError] = useState(false);
   const [connUrl, setConnUrl] = useState(`http://${process.env.REACT_APP_ROUTE}/api/article/${blogId}`);
 
   const fetchData = async () => {
-    const { data } = await axios.get(connUrl);
-    setBlogData(data.result);
-    setDataLoaded(true);
+    await axios.get(connUrl).then((response) => {
+      setBlogData(response.data.result);
+      setDataLoaded(true);
+    }).catch((err) => {
+      setApiError(true);
+    });
   }
 
   useEffect(() => {
@@ -39,15 +44,20 @@ const Article = () => {
 
   const arrayBufferToBase64 = () => {
     if (blogData.poster === undefined) {
-      return;
+      setTimeout(() => {
+        arrayBufferToBase64()
+      }
+        , 2000);
     }
-    const buffer = blogData.poster.data.data;
-    var binary = '';
-    var bytes = [].slice.call(new Uint8Array(buffer));
-    bytes.forEach((b) => binary += String.fromCharCode(b));
-    var resultImg = window.btoa(binary);
-    setPosterSrc(resultImg);
-    setPosterLoaded(true);
+    else {
+      const buffer = blogData.poster.data.data;
+      var binary = '';
+      var bytes = [].slice.call(new Uint8Array(buffer));
+      bytes.forEach((b) => binary += String.fromCharCode(b));
+      var resultImg = window.btoa(binary);
+      setPosterSrc(resultImg);
+      setPosterLoaded(true);
+    }
   };
 
   return (
@@ -116,7 +126,7 @@ const Article = () => {
             </div>
           </div>
         </div>
-      </div> : <SpinnerLoad />
+      </div> : <div>{ApiError ? <NotFound /> : <SpinnerLoad message={"Blog "} />}</div>
     }</div>
   );
 };

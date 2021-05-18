@@ -9,6 +9,7 @@ import Profile from "./Components/Layouts/Profile";
 import LogInSignUp from "./Components/Layouts/LogInSignUp";
 import ScrollToTop from "./Components/Basics/ScrollTop";
 import NewArticle from "./Components/Layouts/NewArticle";
+import NotFound from "./Components/Basics/NotFound";
 
 var App = () => {
   return (
@@ -31,8 +32,11 @@ var App = () => {
         <Route path="/create" exact>
           <NewArticle />
         </Route>
-        <Route path="/">
+        <Route path="/" exact>
           <Homepage />
+        </Route>
+        <Route path="/*">
+          <NotFound />
         </Route>
       </Switch>
     </Router>
