@@ -139,3 +139,7 @@
   justify-content: center;
   border-radius: 5px;
 }
+
+.article_author_profile:hover {
+  border: 1px solid black;
+}

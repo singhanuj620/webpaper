@@ -24,17 +24,22 @@ const EditArticle = () => {
     const [dataLoaded, setDataLoaded] = useState(false);
     const [posterLoaded, setPosterLoaded] = useState(false);
     const [ApiError, setApiError] = useState(false);
+    const [changePoster, setChangePoster] = useState(false);
 
 
     const fetchData = async () => {
-        await axios.get(connUrl).then((response) => {
+        var response = await axios.get(connUrl);
+        if (response.status === 200) {
             setBlogData(response.data.result);
-            console.log(blogData)
-            setDataLoaded(true);
+            setTitle(response.data.result.title);
+            setAuthor(response.data.result.author);
+            setContent(response.data.result.content);
             setPosterLoaded(true);
-        }).catch((err) => {
+            setDataLoaded(true);
+        }
+        else {
             setApiError(true);
-        });
+        }
     }
 
     useEffect(() => {
@@ -42,25 +47,38 @@ const EditArticle = () => {
             await fetchData();
         }
         fetch();
-        setTitle(blogData.title);
-        setContent(blogData.content);
-        setAuthor(blogData.author);
     }, []);
 
+    const changePosterImage = () => {
+        if (changePoster) {
+            setChangePoster(false);
+        }
+        else {
+            setChangePoster(true);
+        }
+    }
+
     const submitData = async (e) => {
+        e.preventDefault();
         const formData = new FormData();
         formData.append('title', title);
         formData.append('author', author);
         formData.append('content', content);
-        formData.append('poster', poster);
-        formData.append('posterType', posterType)
+        if (changePoster) {
+            formData.append('poster', poster);
+            formData.append('posterType', posterType)
+        }
+        else {
+            formData.append('posterType', "")
+        }
+
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         };
 
-        const result = await axios.post(`http://${process.env.REACT_APP_ROUTE}/api/article/create`, formData, config)
+        const result = await axios.post(`http://${process.env.REACT_APP_ROUTE}/api/article/edit/${blogId}`, formData, config)
 
         toast.success("🦄 Blog Updated", {
             position: "top-right",
@@ -109,11 +127,17 @@ const EditArticle = () => {
 
                         />
                     </FormGroup>
+
                     <FormGroup className="create_formgroup">
                         <Label for="poster" className="create_lable">
                             Poster Image
-            </Label>
-                        <Input
+                        </Label>
+                        <br />
+                        <Label className="checkbox_poster">
+                            <Input type="checkbox" name="checkbox_changePoster" onClick={() => changePosterImage()} />
+                            &nbsp;Change Poster
+                        </Label>
+                        {changePoster ? <Input
                             required
                             type="file"
                             name="poster"
@@ -124,7 +148,8 @@ const EditArticle = () => {
                                 setPosterType(e.target.files[0].type.split("/")[1]);
                                 setPoster(e.target.files[0]);
                             }}
-                        />
+                        /> : <> </>}
+
                     </FormGroup>
                     <br />
                     {posterLoaded ? <div className="edit_poster"><img

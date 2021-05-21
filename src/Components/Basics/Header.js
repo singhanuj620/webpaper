@@ -46,7 +46,7 @@ const NavbarSection = (props) => {
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link to={`/article/60894fbeb7007e56a8c5b918`} className="link">
+                <Link to={`/article/60a3af3a9f80202d580a33b2`} className="link">
                   Random Blog
                 </Link>
               </NavLink>
