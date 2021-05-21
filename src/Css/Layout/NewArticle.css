@@ -37,3 +37,19 @@
     width: 96%;
     margin-bottom: 10%;
 }
+
+.edit_poster{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create_post_btn_container{
+    display: flex;
+    flex-direction:column;
+}
+
+.delete_btn{
+    margin-bottom: 4%;
+    margin-top:-8%;
+}

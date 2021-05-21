@@ -15,7 +15,7 @@ const NotFound = () => {
             </div>
             <div className="notfound_buttons">
                 <Button color="warning" outline onClick={() => (goBack())}>Go Back</Button>
-                <Button color="info">Home</Button>
+                <a href="/"><Button color="info">Home</Button></a>
             </div>
             <div>
                 <img src={NotFoundImg} alt="Error Page" className="notfound_svg" />

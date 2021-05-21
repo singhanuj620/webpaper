@@ -5,6 +5,7 @@ import "./App.css";
 import NavbarSection from "./Components/Basics/Header";
 import Homepage from "./Components/Layouts/Homepage";
 import Article from "./Components/Layouts/Article";
+import EditArticle from "./Components/Layouts/EditArticle";
 import Profile from "./Components/Layouts/Profile";
 import LogInSignUp from "./Components/Layouts/LogInSignUp";
 import ScrollToTop from "./Components/Basics/ScrollTop";
@@ -17,8 +18,11 @@ var App = () => {
       <ScrollToTop />
       <NavbarSection />
       <Switch>
-        <Route path="/article/:blogId">
+        <Route path="/article/:blogId" exact>
           <Article />
+        </Route>
+        <Route path="/article/edit/:blogId" exact>
+          <EditArticle />
         </Route>
         <Route path="/user/:userId">
           <Profile />

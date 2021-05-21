@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import "../../Css/Layout/Article.css";
 import SpinnerLoad from '../Basics/SpinnerLoad'
 import faker from "faker";
@@ -20,14 +20,18 @@ const Article = () => {
   const [blogData, setBlogData] = useState({});
   const [posterLoaded, setPosterLoaded] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const [posterSrc, setPosterSrc] = useState("");
   const [ApiError, setApiError] = useState(false);
+  const [userCheck, setUserCheck] = useState(true);
+  const [redirect, setRedirect] = useState(false);
+  const [redirectPath, setRedirectPath] = useState(true);
   const [connUrl, setConnUrl] = useState(`http://${process.env.REACT_APP_ROUTE}/api/article/${blogId}`);
 
   const fetchData = async () => {
     await axios.get(connUrl).then((response) => {
       setBlogData(response.data.result);
       setDataLoaded(true);
+      setUserCheck(true);
+      setPosterLoaded(true);
     }).catch((err) => {
       setApiError(true);
     });
@@ -36,29 +40,14 @@ const Article = () => {
   useEffect(() => {
     async function fetch() {
       await fetchData();
-      arrayBufferToBase64();
     }
     fetch();
   }, []);
 
-
-  const arrayBufferToBase64 = () => {
-    if (blogData.poster === undefined) {
-      setTimeout(() => {
-        arrayBufferToBase64()
-      }
-        , 2000);
-    }
-    else {
-      const buffer = blogData.poster.data.data;
-      var binary = '';
-      var bytes = [].slice.call(new Uint8Array(buffer));
-      bytes.forEach((b) => binary += String.fromCharCode(b));
-      var resultImg = window.btoa(binary);
-      setPosterSrc(resultImg);
-      setPosterLoaded(true);
-    }
-  };
+  const editArticle = (id) => {
+    setRedirectPath(`/article/edit/${id}`);
+    setRedirect(true);
+  }
 
   return (
     <div>{dataLoaded ?
@@ -66,7 +55,7 @@ const Article = () => {
         <div className="article_poster_container">
           {posterLoaded ? <img
             className="article_poster"
-            src={`data:image/${blogData.poster.posterType};base64,${posterSrc}`}
+            src={blogData.poster}
             alt="article poster"
           /> : <SpinnerLoad message={"Poster"} />
           }
@@ -89,9 +78,11 @@ const Article = () => {
               </div>
               <div className="article_author_name">{blogData.author}</div>
               <div className="article_author_connect">
-                <div className="article_author_profile">
+                {userCheck ? <div className="article_author_profile" onClick={() => editArticle(blogData._id)}>
+                  Edit the article
+                </div> : <div className="article_author_profile">
                   View more from this author
-                </div>
+                </div>}
                 <div className="article_actions">
                   {faker.random.boolean() ? (
                     <FavoriteBorderIcon />
@@ -127,7 +118,8 @@ const Article = () => {
           </div>
         </div>
       </div> : <div>{ApiError ? <NotFound /> : <SpinnerLoad message={"Blog "} />}</div>
-    }</div>
+    }
+      {redirect ? <Redirect to={redirectPath} /> : <> </>}</div>
   );
 };
 
