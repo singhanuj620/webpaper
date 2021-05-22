@@ -89,11 +89,30 @@ const EditArticle = () => {
             draggable: true,
             progress: undefined,
         });
-        setRedirectPath(result.data.data.blogId);
+        setRedirectPath(`/article/${result.data.data.blogId}`);
         if (result.status === 200) {
             setTimeout(() => setRedirect(true), 4000);
         }
-    };
+    }
+
+    const deleteBlog = async () => {
+        const result = await axios.get(`http://${process.env.REACT_APP_ROUTE}/api/article/delete/${blogId}`)
+
+        toast.success("🦄 Blog Deleted, Redirecting", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
+        setRedirectPath("");
+        if (result.status === 200) {
+            setTimeout(() => setRedirect(true), 4000);
+        }
+    }
 
     return (
         <div> {dataLoaded ?
@@ -197,15 +216,22 @@ const EditArticle = () => {
                             className="create_markdown_editor"
                         />
                     </div>
-                    <div className="create_post_btn">
-                        <Button color="warning" type="submit" size="lg" block>
-                            Update
-            </Button>
+                    <div className="create_post_btn_container">
+                        <div className="create_post_btn">
+                            <Button color="warning" type="submit" size="lg" block>
+                                Update
+                            </Button>
+                        </div>
+                        <div className="create_post_btn delete_btn">
+                            <Button color="info" size="lg" block onClick={() => deleteBlog()}>
+                                Delete
+                            </Button>
+                        </div>
                     </div>
                 </Form>
             </div> : <div>{ApiError ? <NotFound /> : <SpinnerLoad message={"Blog "} />}</div>
         }
-            {redirect ? <Redirect to={`/article/${redirectPath}`} /> : <> </>}
+            {redirect ? <Redirect to={redirectPath} /> : <> </>}
         </div>
     );
 };
