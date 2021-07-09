@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AllPost from "../Homepage/AllPost";
+import NavbarSection from "../Basics/Header"
 import "../../Css/Layout/Profile.css";
 import faker from "faker";
 import { Table } from "reactstrap";
@@ -9,11 +10,37 @@ import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import DraftsIcon from "@material-ui/icons/Drafts";
 import RoomIcon from "@material-ui/icons/Room";
 import LocalActivityIcon from "@material-ui/icons/LocalActivity";
+import axios from "axios"
+import { useCookies } from 'react-cookie';
+import { useHistory } from "react-router-dom";
+import SpinnerLoad from "../Basics/SpinnerLoad"
 
 const Profile = () => {
+
+  const connUrl = "http://" + process.env.REACT_APP_ROUTE + "/api/profile";
+  const [cookies, setCookie] = useCookies(['user']);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const [userData, setUserData] = useState()
+  let history = useHistory();
+
+  useEffect(() => {
+    (async () => {
+      const token = cookies.jwtToken;
+      try {
+        const response = await axios.post(connUrl, { token });
+        setUserData(response.data.data);
+        setDataLoaded(true);
+      } catch (err) {
+        history.push("/login");
+      }
+    })();
+  }, [])
+
+
   return (
     <div>
-      <div className="profile_container">
+      <NavbarSection />
+      {dataLoaded ? <div> <div className="profile_container">
         <div className="profile_metadata">
           <div className="profile_photo_container">
             <img
@@ -26,13 +53,13 @@ const Profile = () => {
         <div className="profile_info">
           <div className="profile_stats">
             <div className="profile_followers">
-              <GroupAddIcon /> &nbsp; {faker.random.number()} followers
+              <GroupAddIcon /> &nbsp; 0 followers
             </div>
             <div className="profile_stars">
-              <StarsIcon /> &nbsp; {faker.random.number()} stars
+              <StarsIcon /> &nbsp; 0 stars
             </div>
             <div className="profile_email">
-              <DraftsIcon /> &nbsp; {faker.internet.email()}
+              <DraftsIcon /> &nbsp; {userData.email}
             </div>
             <div className="profile_location">
               <RoomIcon /> &nbsp; {faker.address.state()},
@@ -40,8 +67,8 @@ const Profile = () => {
             </div>
           </div>
           <div className="profile_username_metadata">
-            <div className="profile_username">{faker.name.findName()}</div>
-            <div className="profile_tag">@{faker.internet.userName()}</div>
+            <div className="profile_username">{userData.firstName}&nbsp;{userData.lastName}</div>
+            <div className="profile_tag">@{userData.username}</div>
             <div className="profile_donate">
               {faker.random.boolean() ? "Donate" : "Edit Profile"}
             </div>
@@ -79,7 +106,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <AllPost />
+        <AllPost /></div> : <SpinnerLoad message={"Blog "} />}
+
     </div>
   );
 };

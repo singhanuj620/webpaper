@@ -7,6 +7,7 @@ import "../../Css/Layout/NewArticle.css";
 import axios from "axios";
 import SpinnerLoad from '../Basics/SpinnerLoad'
 import NotFound from '../Basics/NotFound'
+import NavbarSection from "../Basics/Header"
 
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
@@ -25,17 +26,18 @@ const EditArticle = () => {
     const [posterLoaded, setPosterLoaded] = useState(false);
     const [ApiError, setApiError] = useState(false);
     const [changePoster, setChangePoster] = useState(false);
-
+    const [userId, setUserId] = useState();
 
     const fetchData = async () => {
         var response = await axios.get(connUrl);
         if (response.status === 200) {
             setBlogData(response.data.result);
             setTitle(response.data.result.title);
-            setAuthor(response.data.result.author);
+            setAuthor(response.data.result.author.firstName + " " + response.data.result.author.lastName);
             setContent(response.data.result.content);
             setPosterLoaded(true);
             setDataLoaded(true);
+            setUserId(response.data.result.author._id)
         }
         else {
             setApiError(true);
@@ -62,7 +64,7 @@ const EditArticle = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('title', title);
-        formData.append('author', author);
+        formData.append('author', userId);
         formData.append('content', content);
         if (changePoster) {
             formData.append('poster', poster);
@@ -115,122 +117,120 @@ const EditArticle = () => {
     }
 
     return (
-        <div> {dataLoaded ?
-            <div className="create_container">
-                <ToastContainer
-                    position="top-right"
-                    autoClose={4000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
-                <Form onSubmit={(e) => submitData(e)}>
-                    <FormGroup className="create_formgroup">
-                        <Label for="title" className="create_lable">
-                            Title
-            </Label>
-                        <Input
-                            required
-                            type="text"
-                            name="title"
-                            id="title"
-                            placeholder="Article Title"
-                            value={title}
-                            onChange={(e) => {
-                                setTitle(e.target.value);
-                            }}
+        <div><NavbarSection />
+            {dataLoaded ?
+                <div className="create_container">
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={4000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                    <Form onSubmit={(e) => submitData(e)}>
+                        <FormGroup className="create_formgroup">
+                            <Label for="title" className="create_lable">
+                                Title
+                            </Label>
+                            <Input
+                                required
+                                type="text"
+                                name="title"
+                                id="title"
+                                placeholder="Article Title"
+                                value={title}
+                                onChange={(e) => {
+                                    setTitle(e.target.value);
+                                }}
 
-                        />
-                    </FormGroup>
+                            />
+                        </FormGroup>
 
-                    <FormGroup className="create_formgroup">
-                        <Label for="poster" className="create_lable">
-                            Poster Image
-                        </Label>
+                        <FormGroup className="create_formgroup">
+                            <Label for="poster" className="create_lable">
+                                Poster Image
+                            </Label>
+                            <br />
+                            <Label className="checkbox_poster">
+                                <Input type="checkbox" name="checkbox_changePoster" onClick={() => changePosterImage()} />
+                                &nbsp;Change Poster
+                            </Label>
+                            {changePoster ? <Input
+                                required
+                                type="file"
+                                name="poster"
+                                id="poster"
+                                accept="image/*"
+                                placeholder="Select an image for poster"
+                                onChange={(e) => {
+                                    setPosterType(e.target.files[0].type.split("/")[1]);
+                                    setPoster(e.target.files[0]);
+                                }}
+                            /> : <> </>}
+
+                        </FormGroup>
                         <br />
-                        <Label className="checkbox_poster">
-                            <Input type="checkbox" name="checkbox_changePoster" onClick={() => changePosterImage()} />
-                            &nbsp;Change Poster
-                        </Label>
-                        {changePoster ? <Input
-                            required
-                            type="file"
-                            name="poster"
-                            id="poster"
-                            accept="image/*"
-                            placeholder="Select an image for poster"
-                            onChange={(e) => {
-                                setPosterType(e.target.files[0].type.split("/")[1]);
-                                setPoster(e.target.files[0]);
-                            }}
-                        /> : <> </>}
+                        {posterLoaded ? <div className="edit_poster"><img
+                            className="article_poster"
+                            src={blogData.poster}
+                            alt="article poster"
+                        /></div> : <SpinnerLoad message={"Poster"} />
+                        }
+                        <br />
+                        <FormGroup className="create_formgroup">
+                            <Label for="author" className="create_lable">
+                                Author
+                            </Label>
+                            <Input
+                                required
+                                type="text"
+                                name="author"
+                                id="author"
+                                value={author}
+                                disabled
+                            />
+                        </FormGroup>
 
-                    </FormGroup>
-                    <br />
-                    {posterLoaded ? <div className="edit_poster"><img
-                        className="article_poster"
-                        src={blogData.poster}
-                        alt="article poster"
-                    /></div> : <SpinnerLoad message={"Poster"} />
-                    }
-                    <br />
-                    <FormGroup className="create_formgroup">
-                        <Label for="author" className="create_lable">
-                            Author
-            </Label>
-                        <Input
-                            required
-                            type="text"
-                            name="author"
-                            id="author"
-                            placeholder="Author Name"
-                            onChange={(e) => {
-                                setAuthor(e.target.value);
-                            }}
-                            value={author}
-                        />
-                    </FormGroup>
-
-                    <div className="create_note">
-                        <span>
-                            <strong>NOTE :</strong> &nbsp;
-            </span>
-            It's a markdown editor . To know markdown language rules click :
-            &nbsp;
-            <a
-                            href="https://www.markdownguide.org/basic-syntax/"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Markdown Language
-            </a>
-                    </div>
-                    <div className="create_markdown_box">
-                        <MDEditor
-                            value={content}
-                            onChange={setContent}
-                            className="create_markdown_editor"
-                        />
-                    </div>
-                    <div className="create_post_btn_container">
-                        <div className="create_post_btn">
-                            <Button color="warning" type="submit" size="lg" block>
-                                Update
-                            </Button>
+                        <div className="create_note">
+                            <span>
+                                <strong>NOTE :</strong> &nbsp;
+                            </span>
+                            It's a markdown editor . To know markdown language rules click :
+                            &nbsp;
+                            <a
+                                href="https://www.markdownguide.org/basic-syntax/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Markdown Language
+                            </a>
                         </div>
-                        <div className="create_post_btn delete_btn">
-                            <Button color="info" size="lg" block onClick={() => deleteBlog()}>
-                                Delete
-                            </Button>
+                        <div className="create_markdown_box">
+                            <MDEditor
+                                value={content}
+                                onChange={setContent}
+                                className="create_markdown_editor"
+                            />
                         </div>
-                    </div>
-                </Form>
-            </div> : <div>{ApiError ? <NotFound /> : <SpinnerLoad message={"Blog "} />}</div>
-        }
+                        <div className="create_post_btn_container">
+                            <div className="create_post_btn">
+                                <Button color="warning" type="submit" size="lg" block>
+                                    Update
+                                </Button>
+                            </div>
+                            <div className="create_post_btn delete_btn">
+                                <Button color="info" size="lg" block onClick={() => deleteBlog()}>
+                                    Delete
+                                </Button>
+                            </div>
+                        </div>
+                    </Form>
+                </div> : <div>{ApiError ? <NotFound /> : <SpinnerLoad message={"Blog "} />}</div>
+            }
             {redirect ? <Redirect to={redirectPath} /> : <> </>}
         </div>
     );

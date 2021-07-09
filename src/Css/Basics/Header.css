@@ -5,6 +5,7 @@
   top: 0;
   margin-left: 1%;
   z-index: 100;
+
 }
 
 .navbar-text,
@@ -12,6 +13,6 @@
   color: black !important;
 }
 
-.nav-link:hover {
+.header_button:hover {
   border-bottom: 1px solid black;
 }

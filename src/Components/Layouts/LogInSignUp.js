@@ -5,7 +5,7 @@ import SignUp from "../LogInSignUp/SignUp";
 
 const LogInSignUp = () => {
   const { url } = useRouteMatch();
-  console.log(url.slice(1));
+  // console.log(url.slice(1));
 
   return <div>{url.slice(1) === "login" ? <LogIn /> : <SignUp />}</div>;
 };
