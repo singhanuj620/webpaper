@@ -35,7 +35,7 @@ const NavbarSection = (props) => {
   const removeToken = () => {
     removeCookie("jwtToken");
     setUserPresent(false);
-    history.push("/login")
+    history.push("/login");
   }
 
   const [isOpen, setIsOpen] = useState(false);

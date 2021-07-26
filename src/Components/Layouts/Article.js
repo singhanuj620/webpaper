@@ -102,22 +102,24 @@ const Article = () => {
                 <div className="article_author_connect">
                   {userCheck ? <div className="article_author_profile" onClick={() => editArticle(blogData._id)}>
                     Edit the article
-                  </div> : <div className="article_author_profile">
+                  </div> : <div><div className="article_author_profile">
                     View more from this author
-                  </div>}
-                  <div className="article_actions">
-                    {faker.random.boolean() ? (
-                      <FavoriteBorderIcon />
-                    ) : (
-                      <FavoriteIcon />
-                    )}
-                    <ChatIcon />
-                    {faker.random.boolean() ? (
-                      <TurnedInNotIcon />
-                    ) : (
-                      <TurnedInIcon />
-                    )}
                   </div>
+                    <div className="article_actions">
+                      {faker.random.boolean() ? (
+                        <FavoriteBorderIcon />
+                      ) : (
+                        <FavoriteIcon />
+                      )}
+                      <ChatIcon />
+                      {faker.random.boolean() ? (
+                        <TurnedInNotIcon />
+                      ) : (
+                        <TurnedInIcon />
+                      )}
+                    </div>
+                  </div>
+                  }
                 </div>
               </div>
               <div className="article_qr">

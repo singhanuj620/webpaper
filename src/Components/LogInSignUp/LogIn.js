@@ -36,7 +36,7 @@ const LogIn = () => {
     }
     await axios.post(connUrl, userData).then((response) => {
       if (response.status === 200) {
-        console.log(response.data.token)
+        // console.log(response.data.token)
         setCookie('jwtToken', response.data.token, {
           maxAge: 432000
         });
