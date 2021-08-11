@@ -10,7 +10,6 @@ import NotFound from '../Basics/NotFound'
 import MDEditor from "@uiw/react-md-editor";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ChatIcon from "@material-ui/icons/Chat";
 import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import TurnedInIcon from "@material-ui/icons/TurnedIn";
 import NavbarSection from "../Basics/Header"
@@ -111,7 +110,6 @@ const Article = () => {
                       ) : (
                         <FavoriteIcon />
                       )}
-                      <ChatIcon />
                       {faker.random.boolean() ? (
                         <TurnedInNotIcon />
                       ) : (
@@ -124,7 +122,7 @@ const Article = () => {
               </div>
               <div className="article_qr">
                 <p>Share this article :</p>
-                <QRCode value={`https://localhost:3000/article/${blogId}`} />
+                <QRCode value={`http://${process.env.REACT_APP_WEBPAPER_URL}/article/${blogId}`} />
                 <span
                   className="linktocopy"
                   onClick={() => {
@@ -132,7 +130,7 @@ const Article = () => {
                     var t = document.getElementsByClassName("linktocopy")[0];
                     t.style.setProperty("background-color", "#31D2F2");
                     navigator.clipboard.writeText(
-                      `https://localhost:3000/article/${blogId}`
+                      `http://${process.env.REACT_APP_WEBPAPER_URL}/article/${blogId}`
                     );
                   }}
                 >

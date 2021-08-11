@@ -20,16 +20,21 @@ const NavbarSection = (props) => {
 
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [userPresent, setUserPresent] = useState(false);
+  const [userData, setUserData] = useState()
   let history = useHistory();
 
   useEffect(() => {
-    const token = cookies.jwtToken;
-    if (token) {
-      setUserPresent(true)
-    }
-    else {
-      setUserPresent(false)
-    }
+    (async () => {
+      const token = cookies.jwtToken;
+      if (token) {
+        const response = await axios.post(`http://${process.env.REACT_APP_ROUTE}/api/profile`, { token });
+        setUserData(response.data.data)
+        setUserPresent(true)
+      }
+      else {
+        setUserPresent(false)
+      }
+    })();
   }, [])
 
   const removeToken = () => {
@@ -56,7 +61,7 @@ const NavbarSection = (props) => {
             {userPresent ?
               <NavItem>
                 <NavLink>
-                  <Link to={`/user/${uuid()}`} className="link header_button" >
+                  <Link to={`/user/${userData._id}`} className="link header_button" >
                     Profile
                   </Link>
                 </NavLink>

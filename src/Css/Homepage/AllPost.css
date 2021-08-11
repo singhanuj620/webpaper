@@ -19,15 +19,15 @@
   min-width: 26rem;
   flex-grow: 1;
   justify-content: space-between;
-  margin-bottom: 3%;
+  margin-bottom: 0.5%;
   padding: 2%;
 }
 
-.allPost_photo {
-  width: 15rem;
-  height: 15rem;
-  border-radius: 5px;
+.allPost:hover{
+  background-color: #f5f5f5;
+  border-radius: 2%;
 }
+
 
 .allPost_sm_info {
   display: flex;
@@ -51,7 +51,7 @@
   margin-top: 1%;
   font-weight: bold;
   font-size: 1.5rem;
-  width: 45vw;
+  width: 65vw;
   font-family: "Roboto", sans-serif;
   letter-spacing: 1.5px;
 }
@@ -59,7 +59,7 @@
 .allPost_sm_description {
   margin-top: 1%;
   font-size: 1.1rem;
-  width: 42vw;
+  width: 55vw;
   height: 15vh;
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
@@ -71,6 +71,17 @@
   justify-content: space-between;
   padding-top: 3%;
   font-weight: 300;
-  width: 41vw;
+  width: 58vw;
   font-family: "Raleway", sans-serif;
+}
+
+.allPost_photo {
+  width: 15rem;
+  height: 15rem;
+}
+
+.allPost_poster{
+  height:100%;
+  width:100%;
+  border-radius: 5%;
 }

@@ -10,48 +10,40 @@ import DraftsIcon from "@material-ui/icons/Drafts";
 import RoomIcon from "@material-ui/icons/Room";
 import axios from "axios"
 import { useCookies } from 'react-cookie';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import SpinnerLoad from "../Basics/SpinnerLoad"
 import { Button } from "reactstrap";
 
 const Profile = () => {
 
-  const connUrl = "http://" + process.env.REACT_APP_ROUTE + "/api/profile";
+  const connUrlForGeneral = "http://" + process.env.REACT_APP_ROUTE + "/api/profile/user";
+  const connUrlForToken = "http://" + process.env.REACT_APP_ROUTE + "/api/profile/fetch";
   const [cookies, setCookie] = useCookies(['user']);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [userData, setUserData] = useState();
-  const [userBlogId, setUserBlogId] = useState([]);
   const [userBlogData, setUserBlogData] = useState([]);
   const [userBlogDataLoaded, setUserBlogDataLoaded] = useState(false);
   let history = useHistory();
-
+  let { userId } = useParams();
   useEffect(() => {
     (async () => {
       const token = cookies.jwtToken;
-      try {
-        const response = await axios.post(connUrl, { token });
+      if (token) {
+        const response = await axios.post(connUrlForToken, { token });
         setUserData(response.data.data);
-        setUserBlogId(response.data.data.posts);
+        setUserBlogData(response.data.data.posts);
+        setUserBlogDataLoaded(true);
         setDataLoaded(true);
-        (async () => {
-          try {
-            await userBlogId.map(async (id) => {
-              const userBlogResponse = await axios.get(`http://${process.env.REACT_APP_ROUTE}/api/article/${id}`);
-              console.log("OIOIOI");
-              setUserBlogData([...userBlogData, userBlogResponse.data.result]);
-            })
-            setUserBlogDataLoaded(true);
-          }
-          catch (err) {
-            setUserBlogDataLoaded(false);
-          }
-        })();
-      } catch (err) {
-        history.push("/login");
+      }
+      else {
+        const response = await axios.post(connUrlForGeneral, { userId });
+        setUserData(response.data.data);
+        setUserBlogData(response.data.data.posts);
+        setUserBlogDataLoaded(true);
+        setDataLoaded(true);
       }
     })();
   }, [])
-
 
   return (
     <div>
