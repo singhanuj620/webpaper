@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { ToastContainer, toast } from "react-toastify";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams, useHistory } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "../../Css/Layout/NewArticle.css";
 import axios from "axios";
 import SpinnerLoad from '../Basics/SpinnerLoad'
 import NotFound from '../Basics/NotFound'
 import NavbarSection from "../Basics/Header"
+import { useCookies } from 'react-cookie';
 
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const EditArticle = () => {
     let { blogId } = useParams();
+    let history = useHistory();
     const [content, setContent] = useState("It's a **markdown editor** !!");
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
@@ -22,11 +24,15 @@ const EditArticle = () => {
     const [redirectPath, setRedirectPath] = useState("/");
     const [blogData, setBlogData] = useState({});
     const [connUrl, setConnUrl] = useState(`http://${process.env.REACT_APP_ROUTE}/api/article/${blogId}`);
+    const [authConnUrl, setAuthConnUrl] = useState(`http://${process.env.REACT_APP_ROUTE}/api/article/authorized/${blogId}`);
     const [dataLoaded, setDataLoaded] = useState(false);
     const [posterLoaded, setPosterLoaded] = useState(false);
     const [ApiError, setApiError] = useState(false);
     const [changePoster, setChangePoster] = useState(false);
     const [userId, setUserId] = useState();
+    const [cookies, setCookie] = useCookies(['user']);
+    const [loggedInUserId, setLoggedInUserId] = useState("");
+    const token = cookies.jwtToken;
 
     const fetchData = async () => {
         var response = await axios.get(connUrl);
@@ -45,10 +51,25 @@ const EditArticle = () => {
     }
 
     useEffect(() => {
-        async function fetch() {
-            await fetchData();
+        if (token) {
+            (async () => {
+                const authorizedUser = await axios.post(authConnUrl, { token })
+                if (authorizedUser.data.data.isAuthorized === false) {
+                    history.push("/login");
+                }
+                else {
+                    setLoggedInUserId(authorizedUser.data.data.userId);
+                    async function fetch() {
+                        await fetchData();
+                    }
+                    fetch();
+                }
+            })();
         }
-        fetch();
+        else {
+            history.push("/login");
+        }
+
     }, []);
 
     const changePosterImage = () => {
@@ -98,7 +119,7 @@ const EditArticle = () => {
     }
 
     const deleteBlog = async () => {
-        const result = await axios.get(`http://${process.env.REACT_APP_ROUTE}/api/article/delete/${blogId}`)
+        const result = await axios.post(`http://${process.env.REACT_APP_ROUTE}/api/article/delete/${blogId}`, { token })
 
         toast.success("🦄 Blog Deleted, Redirecting", {
             position: "top-right",
@@ -217,11 +238,15 @@ const EditArticle = () => {
                             />
                         </div>
                         <div className="create_post_btn_container">
-                            <div className="create_post_btn">
-                                <Button color="warning" type="submit" size="lg" block>
-                                    Update
-                                </Button>
-                            </div>
+                            {loggedInUserId === userId ?
+                                <div className="create_post_btn">
+                                    <Button color="warning" type="submit" size="lg" block>
+                                        Update
+                                    </Button>
+                                </div> :
+                                null
+                            }
+
                             <div className="create_post_btn delete_btn">
                                 <Button color="info" size="lg" block onClick={() => deleteBlog()}>
                                     Delete
