@@ -23,12 +23,14 @@ const Profile = () => {
   const [userData, setUserData] = useState();
   const [userBlogData, setUserBlogData] = useState([]);
   const [userBlogDataLoaded, setUserBlogDataLoaded] = useState(false);
+  const [tokenPresent, setTokenPresent] = useState(false);
   let history = useHistory();
   let { userId } = useParams();
   useEffect(() => {
     (async () => {
       const token = cookies.jwtToken;
       if (token) {
+        setTokenPresent(true);
         const response = await axios.post(connUrlForToken, { token });
         setUserData(response.data.data);
         setUserBlogData(response.data.data.posts);
@@ -78,7 +80,7 @@ const Profile = () => {
             <div className="profile_username">{userData.firstName}&nbsp;{userData.lastName}</div>
             <div className="profile_tag">@{userData.username}</div>
             <div className="profile_donate">
-              {faker.random.boolean() ? "Donate" : "Edit Profile"}
+              {tokenPresent ? "Edit Profile" : "Donate"}
             </div>
             <div className="profile_highlight">
               Creator | Programmer | Indian

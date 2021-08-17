@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../Css/Homepage/AllPost.css";
-import ConfigData from "../../Config";
-import axios from "axios";
-import faker from "faker";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import TurnedInIcon from "@material-ui/icons/TurnedIn";
 import { Link } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
@@ -16,10 +12,8 @@ const AllPost = ({ data = {} }) => {
 
   const [dataLoaded, setDataLoaded] = useState(false);
 
-
   useEffect(() => {
     if (data) {
-      console.log(data)
       setDataLoaded(true);
     }
   }, []);
@@ -47,7 +41,7 @@ const AllPost = ({ data = {} }) => {
               <div className="allPost_sm_avatar">
                 <AccountCircleOutlinedIcon />
               </div>
-              <div className="allPost_sm_author">{dataLoaded ? <div>By : {data.author.firstName + " " + data.author.lastName + " ( @" + data.author.username + " ) "} </div> : <div>Unknown User</div>}
+              <div className="allPost_sm_author">{dataLoaded ? <div>By : <a className="link user_title" href={`http://${process.env.REACT_APP_WEBPAPER_URL}/user/${data.author._id}`}>{data.author.firstName + " " + data.author.lastName + " ( @" + data.author.username + " ) "} </a> </div> : <div>Unknown User</div>}
               </div>
             </div>
             {/* allPost_info */}

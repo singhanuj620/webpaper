@@ -14,6 +14,9 @@ import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import TurnedInIcon from "@material-ui/icons/TurnedIn";
 import NavbarSection from "../Basics/Header"
 import { useCookies } from 'react-cookie';
+import {
+  Button,
+} from "reactstrap";
 
 const Article = () => {
   let { blogId } = useParams();
@@ -27,6 +30,7 @@ const Article = () => {
   const [redirectPath, setRedirectPath] = useState(true);
   const [connUrl, setConnUrl] = useState(`http://${process.env.REACT_APP_ROUTE}/api/article/${blogId}`);
   const [cookies, setCookie] = useCookies(['user']);
+  const [generalUser, setGeneralUser] = useState(false);
 
 
   useEffect(() => {
@@ -46,10 +50,12 @@ const Article = () => {
               }
               else {
                 setUserCheck(false);
+                setGeneralUser(true);
               }
             }
             else {
               setUserCheck(false);
+              setGeneralUser(true);
             }
           }
           else {
@@ -101,21 +107,39 @@ const Article = () => {
                 <div className="article_author_connect">
                   {userCheck ? <div className="article_author_profile" onClick={() => editArticle(blogData._id)}>
                     Edit the article
-                  </div> : <div><div className="article_author_profile">
-                    View more from this author
-                  </div>
-                    <div className="article_actions">
-                      {faker.random.boolean() ? (
-                        <FavoriteBorderIcon />
-                      ) : (
-                        <FavoriteIcon />
-                      )}
-                      {faker.random.boolean() ? (
-                        <TurnedInNotIcon />
-                      ) : (
-                        <TurnedInIcon />
-                      )}
+                  </div> : <div style={{ "width": "100%" }}>
+                    <div className="article_author_profile">
+                      <a className="link" href={`http://${process.env.REACT_APP_WEBPAPER_URL}/user/${blogData.author._id}`}>
+                        View more from this author
+                      </a>
                     </div>
+                    {generalUser ?
+                      <div className="article_actions">
+                        <div>
+                          <FavoriteBorderIcon />&nbsp;{blogData.likes}
+                        </div>
+                        <div>
+                          <TurnedInNotIcon />&nbsp;{blogData.saves}
+                        </div>
+                      </div> :
+                      <div>
+                        <div className="article_actions">
+                          <Button color="success" size="sm" style={{ "width": "100%" }}>
+                            <a className="link" href={`http://${process.env.REACT_APP_WEBPAPER_URL}/login`}>
+                              Log in to like or save !!
+                            </a>
+                          </Button>
+                        </div>
+                        <div className="article_actions">
+                          <div>
+                            <FavoriteBorderIcon />&nbsp;{blogData.likes}
+                          </div>
+                          <div>
+                            <TurnedInNotIcon />&nbsp;{blogData.saves}
+                          </div>
+                        </div>
+                      </div>
+                    }
                   </div>
                   }
                 </div>

@@ -85,3 +85,7 @@
   width:100%;
   border-radius: 5%;
 }
+
+.user_title:hover{
+  border-bottom: 1px solid black;
+}
